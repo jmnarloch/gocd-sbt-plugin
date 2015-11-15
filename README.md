@@ -11,6 +11,8 @@ Download the plugin and copy it into `$GO_SERVER_HOME/plugins/external` and rest
 
 The plugin should appear on Plugins page.
 
+![SBT task](screen.png)
+
 ## Usage
 
 Add SBT tasks to your build stage.
