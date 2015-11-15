@@ -1,0 +1,19 @@
+<div class="form_item_block">
+    <label for="tasks">Tasks:<span class="asterisk">*</span></label>
+    <input id="tasks" name="tasks" type="text" ng-model="Tasks" ng-required="true"/>
+</div>
+<div class="form_item_block">
+    <label for="sbtHome">SBT home:</label>
+    <input id="sbtHome" type="text" ng-model="SbtHome">
+    <div class="inline_instruction">Specify the path to SBT installation directory</div>
+</div>
+<div class="form_item_block">
+    <label for="sbtVersion">SBT version:</label>
+    <input id="sbtVersion" type="text" ng-model="SbtVersion">
+    <div class="inline_instruction">The optional SBT version</div>
+</div>
+<div class="form_item_block">
+    <label for="additionalOptions">Additional options:</label>
+    <textarea id="additionalOptions" name="additionalOptions" type="text" ng-model="AdditionalOptions" rows="5"></textarea>
+    <div class="inline_instruction">Enter each option on a new line</div>
+</div>

@@ -1,0 +1,106 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id "com.github.hierynomus.license" version "0.11.0"
+    id 'net.researchgate.release' version '2.1.2'
+    id 'com.github.kt3k.coveralls' version '2.4.0'
+}
+
+apply plugin: 'java'
+apply plugin: "jacoco"
+apply plugin: 'idea'
+
+apply from: 'libraries.gradle'
+apply from: 'gradle/license.gradle'
+apply from: 'gradle/release.gradle'
+
+apply plugin: 'com.github.kt3k.coveralls'
+
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+sourceCompatibility = 1.7
+
+group = "io.jmnarloch"
+archivesBaseName="gocd-sbt-plugin"
+
+ext {
+    isReleaseVersion = !version.endsWith("SNAPSHOT")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Go Continous Delivery SBT plugin',
+                   'Implementation-Version': version
+    }
+    into('lib') {
+        from configurations.compile
+    }
+}
+
+repositories {
+    jcenter()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+}
+
+compileJava {
+    options.fork = true
+}
+
+configurations {
+    provided
+}
+
+idea {
+    project {
+        languageLevel = sourceCompatibility
+    }
+    module{
+        scopes.PROVIDED.plus += [configurations.provided]
+    }
+}
+
+dependencies {
+    provided (libraries.goPluginApi)
+
+    compile (libraries.gocdTaskPluginApi)
+    compile (libraries.gson)
+    compile (libraries.commonsIO)
+    compile (libraries.commonsLang)
+
+    testCompile (libraries.junit)
+    testCompile (libraries.mockito)
+}
+
+sourceSets.main.compileClasspath += configurations.provided
+sourceSets.test.compileClasspath += configurations.provided
+sourceSets.test.runtimeClasspath += configurations.provided
+
+processResources {
+    expand(project.properties)
+}
+
+javadoc {
+    classpath += configurations.provided
+}
+
+findbugs {
+    ignoreFailures = true
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}

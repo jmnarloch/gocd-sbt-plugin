@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<go-plugin id="sbt.task.plugin" version="${version}">
+    <about>
+        <name>SBT Task Plugin</name>
+        <version>${version}</version>
+        <target-go-version>14.4.0</target-go-version>
+        <description>
+            Go Task plugin for SBT builds
+        </description>
+        <vendor>
+            <name>Jakub Narloch</name>
+            <url>http://github.com/jmnarloch/gocd-sbt-plugin</url>
+        </vendor>
+    </about>
+</go-plugin>
