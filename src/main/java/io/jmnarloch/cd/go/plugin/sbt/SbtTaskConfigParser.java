@@ -44,7 +44,7 @@ final class SbtTaskConfigParser {
     /**
      * The SBT bin.
      */
-    private static final String SBT_BIN = "SBT_BIN";
+    private static final String SBT_BIN = "bin";
 
     /**
      * The PATH environment variable.
