@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<go-plugin id="sbt.task.plugin" version="${version}">
+<go-plugin id="sbt.task.plugin" version="1">
     <about>
         <name>SBT Task Plugin</name>
         <version>${version}</version>
